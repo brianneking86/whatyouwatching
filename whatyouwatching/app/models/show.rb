@@ -5,8 +5,8 @@ class Show < ActiveRecord::Base
   def self.create_show(name)
     i = Imdb::Search.new(name)
     show_id = i.movies.first.id
-    show = Imdb::Series.new(show_id)
-    Show.create(title: show.title, plot: show.plot, url: show.url, genre: show.genre, poster: show.poster, tagline: show.tagline, rating: show.rating) 
+    show = Imdb::Serie.new(show_id)
+    Show.create(title: show.title, plot: show.plot, url: show.url, genre: show.genres.join(", "), poster: show.poster, tagline: show.tagline, rating: show.rating) 
   end
 
   # show = []

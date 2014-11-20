@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
                 name: auth_hash[:info][:name],
                 picture: auth_hash[:info][:image])
     u.add_friends
-    binding.pry
-    u.add_shows 
+    u.add_shows
+    u
   end
 
   def add_friends
@@ -28,7 +28,6 @@ class User < ActiveRecord::Base
   def add_shows
     tv_shows = []
     likes = @graph.get_connections("me", "likes")
-    binding.pry
     likes.each do |hsh|
       if hsh["category"] == "Tv show"
         tv_shows << hsh["name"]
@@ -36,6 +35,7 @@ class User < ActiveRecord::Base
     end
     tv_shows.each do |tv_show|
       s = Show.find_by(:title => tv_show)
+      
       if s == nil
         s = Show.create_show(tv_show)
         self.user_shows.create(show_id: s.id) #add to join table
