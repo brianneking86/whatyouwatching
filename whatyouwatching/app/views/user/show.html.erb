@@ -10,3 +10,11 @@
   <li> <%=show.title %> </li>
 <% end %>
 </ul>
+
+
+<h2> My Friends </h2>
+<ul>
+<% @user.friends_list.each do |f| %>
+  <li> <%= f.name %> </li>
+<% end %>
+</ul>

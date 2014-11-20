@@ -44,4 +44,15 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def friends_list
+    friend_array = []
+    self.friends.each do |friend|
+      u = User.find_by(:u_id => friend.u_id)
+      if u != nil
+        friend_array << u
+      end
+    end
+    friend_array
+  end
 end
