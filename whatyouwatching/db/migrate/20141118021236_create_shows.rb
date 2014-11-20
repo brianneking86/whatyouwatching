@@ -7,6 +7,7 @@ class CreateShows < ActiveRecord::Migration
       t.string :genre
       t.string :poster
       t.string :tagline
+      t.string :rating
 
       t.timestamps
     end

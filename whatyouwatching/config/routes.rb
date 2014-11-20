@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
 
-  get 'welcome/index'
-
   get '/login' => 'sessions#new'
   get '/auth/facebook/callback' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
   root 'welcome#index'
+  get 'welcome/index'
 
   resources :user
 

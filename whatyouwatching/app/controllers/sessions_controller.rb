@@ -8,9 +8,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(:u_id => auth_hash[:uid]) || User.create_from_omniauth(auth_hash)
     if @user
       session[:user_id] = @user.id
-      # @user.add_shows
-      # @user.add_friends
-      redirect_to user_path(current_user)
+      redirect_to edit_user_path(@user)
     else
       redirect_to root_url
     end

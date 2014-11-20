@@ -2,8 +2,11 @@ class Show < ActiveRecord::Base
   has_many :user_shows
   has_many :users, through: :user_shows
 
-  def create_show
-    # i = Imdb::Search.now("#{show_name}")
+  def self.create_show(name)
+    i = Imdb::Search.new(name)
+    show_id = i.movies.first.id
+    show = Imdb::Series.new(show_id)
+    Show.create(title: show.title, plot: show.plot, url: show.url, genre: show.genre, poster: show.poster, tagline: show.tagline, rating: show.rating) 
   end
 
   # show = []

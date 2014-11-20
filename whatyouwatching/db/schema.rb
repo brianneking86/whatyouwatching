@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20141118021341) do
     t.string   "genre"
     t.string   "poster"
     t.string   "tagline"
+    t.string   "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

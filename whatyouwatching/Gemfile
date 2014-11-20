@@ -39,6 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 #Gems for app
+gem 'pry'
 gem 'koala'
 gem 'imdb'
 gem 'figaro'
