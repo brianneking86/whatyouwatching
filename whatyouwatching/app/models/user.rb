@@ -28,13 +28,17 @@ class User < ActiveRecord::Base
   def add_shows
     tv_shows = []
     likes = @graph.get_connections("me", "likes")
-    likes.each do |hsh|
-      if hsh["category"] == "Tv show"
-        tv_shows << hsh["name"]
+    last_likes = @graph.get_connections("me", "likes").last
+    while likes != nil
+      likes.each do |hsh|
+        if hsh["category"] == "Tv show"
+          tv_shows << hsh["name"]
+        end
       end
+      likes = likes.next_page
     end
     tv_shows.each do |tv_show|
-      s = Show.find_by(:title => tv_show)
+      s = Show.find_by(:title => "#{tv_show}")
       
       if s == nil
         s = Show.create_show(tv_show)

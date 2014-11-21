@@ -15,6 +15,6 @@
 <h2> My Friends </h2>
 <ul>
 <% @user.friends_list.each do |f| %>
-  <li> <%= f.name %> </li>
+  <li> <%= link_to f.name, user_path(f) %> </li>
 <% end %>
 </ul>
