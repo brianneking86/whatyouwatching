@@ -6,7 +6,21 @@ class Show < ActiveRecord::Base
     i = Imdb::Search.new(name)
     show_id = i.movies.first.id
     show = Imdb::Serie.new(show_id)
-    Show.create(title: name, plot: show.plot, url: show.url, genre: show.genres.join(", "), poster: show.poster, tagline: show.tagline, rating: show.rating) 
+    Show.create(title: show.title, plot: show.plot, url: show.url, genre: show.genres.join(", "), poster: show.poster, tagline: show.tagline, rating: show.rating) 
+  end
+
+  def self.find_show(name, user)
+    #if nil then call create_show
+    i = Imdb::Search.new(name)
+    show_title = i.movies.first.title
+    if Show.find_by(:title => show_title) == nil
+      s = Show.create_show(show_title)
+      user.user_shows.create(show_id: s.id)
+    else
+      s = Show.find_by(:title => show_title)
+      user.user_shows.create(show_id: s.id)
+    end
+
   end
 
   # show = []
