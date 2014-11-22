@@ -7,8 +7,32 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="site-wrapper">
 
-<%= yield %>
+    <div class="site-wrapper-inner">
 
+      <div class="cover-container">
+
+        <div class="masthead clearfix">
+          <div class="inner">
+            <h3 class="masthead-brand">Cover</h3>
+            <nav>
+              <ul class="nav masthead-nav">
+
+                <li class="active">
+                  <a href="#">Home</a>
+                </li>
+
+                <% if logged_in? %>
+                  <li><%= link_to 'Log Out', logout_path%></li>
+                <% end %>
+              </ul>
+            </nav>
+          </div>
+        </div>
+          <%= yield %>
+     </div>
+    </div>
+  </div>
 </body>
 </html>
