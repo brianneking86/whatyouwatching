@@ -39,9 +39,12 @@ class User < ActiveRecord::Base
     end
     tv_shows.uniq!
     tv_shows.each do |tv_show|
-      s = Show.find_by(:title => tv_show)
+      i = Imdb::Search.new(tv_show)
+      m = i.movies.first
+      m_title = m.title
+      s = Show.find_by(:title => m_title)
       if s == nil
-        s = Show.create_show(tv_show)
+        s = Show.create_show(m)
         self.user_shows.create(show_id: s.id) #add to join table
       else
         self.user_shows.create(show_id: s.id)
