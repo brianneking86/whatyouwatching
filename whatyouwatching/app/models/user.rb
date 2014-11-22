@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
     u = self.create(u_id: auth_hash[:uid],
                 name: auth_hash[:info][:name],
                 picture: auth_hash[:info][:image])
-    
+
     u.add_friends
     u.add_shows
     u

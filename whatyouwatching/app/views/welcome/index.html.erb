@@ -5,7 +5,6 @@
   quis nostrud exercitation ullamco laboris nisi.</p>
   <p class="lead">
 
-
      <% if logged_in? %>
        <%= link_to current_user.name, user_path(current_user), class: "btn btn-lg btn-default" %>
        <%= link_to 'Log Out', logout_path, class: "btn btn-lg btn-default" %>

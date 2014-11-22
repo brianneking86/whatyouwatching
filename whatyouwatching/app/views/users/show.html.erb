@@ -1,13 +1,15 @@
-<%= link_to 'Log Out', logout_path %>
 
 <h1> Hello User <%= @user.name %> </h1>
-<%= image_tag(@user.picture) %>
+<%= image_tag(@user.picture, size: "32") %>
 
 <br>
 <h2> My Shows | <%= link_to 'Add More Shows', edit_user_path(@user) %> </h2>
 <ul>
 <% @user.shows.each do |show| %>
   <li> <%=show.title %> </li>
+
+
+
 <% end %>
 </ul>
 
