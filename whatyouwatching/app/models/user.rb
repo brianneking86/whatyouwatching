@@ -5,13 +5,13 @@ class User < ActiveRecord::Base
   has_many :friends
 
   def self.create_from_omniauth(auth_hash)
-    u = self.create(u_id: auth_hash[:uid],
+    user = self.create(u_id: auth_hash[:uid],
                 name: auth_hash[:info][:name],
                 picture: auth_hash[:info][:image])
     
-    u.add_friends
-    u.add_shows
-    u
+    user.add_friends
+    user.add_shows
+    user
   end
 
   def add_friends
@@ -64,4 +64,33 @@ class User < ActiveRecord::Base
     end
     friend_array
   end
+
+  def friend_shows
+    show_count_hsh = {}
+    self.friends_list.each do |friend|
+      friend.shows.each do |show|
+        if !self.shows.include?(show)
+          if show_count_hsh[show]
+            show_count_hsh[show] += 1
+          else
+            show_count_hsh[show] = 1
+          end
+        end
+      end
+    end
+    show_count_hsh
+  end
+
+  def shows_sort_by_friends
+    self.friend_shows.sort_by{|key, value| -value}.to_h
+  end
+
+  def shows_sort_by_rating
+    show_rated = {}
+    self.friend_shows.each do |show, value|
+      show_rated[show] = show.rating.to_f
+    end
+    show_rated.sort_by{|key, value| -value}.to_h
+  end
+
 end

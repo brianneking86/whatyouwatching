@@ -1,6 +1,9 @@
-<%= link_to 'Log Out', logout_path %>
+<%= link_to 'Log Out', logout_path %><br>
+<% if @user != @current_user %>
+<%= link_to 'Return to my profile', user_path(@current_user) %>
+<% end %>
 
-<h1> Hello User <%= @user.name %> </h1>
+<h1> Hi <%= @user.name.split(" ").first %>! </h1>
 <%= image_tag(@user.picture) %>
 
 <br>
@@ -18,3 +21,29 @@
   <li> <%= link_to f.name, user_path(f) %> </li>
 <% end %>
 </ul>
+<% if @user.friends.count == 0 %>
+  <h4> You don't have any friends on here!<br>Tell your friends about WhatYouWatchin! </h4>
+<% else %>
+  <h2> My Friend's Shows </h2>
+  <div id='sort_friends'><h5>Number of Friends Watching</h5></div><div id='sort_rating'><h5>Imdb Rating</h5></div>
+  <div class="sort_by_rating">
+    <% @user.shows_sort_by_rating.each do |show, rating| %>
+      <li><%= show.title %> - Imdb rating: <%=rating %>
+        <%=form_for(UserShow.new) do |f| %>
+          <%=f.hidden_field :show_id, :value =>show.id %>
+          <%=f.submit "Add(+)"%>
+        <% end %>
+       </li><br>
+    <% end %>
+  </div>
+  <div class="sort_by_friends">
+    <% @user.shows_sort_by_friends.each do |show, count| %>
+      <li><%= show.title %> - <%=count%> friends watch this
+        <%=form_for(UserShow.new) do |f| %>
+          <%=f.hidden_field :show_id, :value =>show.id %>
+          <%=f.submit "Add(+)"%>
+        <% end %>
+       </li><br>
+    <% end %>
+  </div>
+<% end %>
