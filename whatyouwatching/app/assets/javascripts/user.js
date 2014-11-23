@@ -29,4 +29,6 @@ $(document).ready(function(){
     $('#my_friends_list').toggle();
   });
 
+  var ul = $('.list-inline')
+  ul.children().each(function(i,li){ul.prepend(li)})
 });

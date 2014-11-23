@@ -4,7 +4,7 @@
 <% end %>
 
 <h1> Hi <%= @user.name.split(" ").first %>! </h1>
-<%= image_tag(@user.picture) %>
+<%= image_tag(@user.picture, size: "32") %>
 
 <br>
 <div class="wrapper">

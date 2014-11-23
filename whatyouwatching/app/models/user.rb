@@ -7,8 +7,7 @@ class User < ActiveRecord::Base
   def self.create_from_omniauth(auth_hash)
     user = self.create(u_id: auth_hash[:uid],
                 name: auth_hash[:info][:name],
-                picture: auth_hash[:info][:image])
-    
+                picture: auth_hash[:info][:image])    
     user.add_friends
     user.add_shows
     user

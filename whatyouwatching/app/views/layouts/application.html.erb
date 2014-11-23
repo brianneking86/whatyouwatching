@@ -7,8 +7,38 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="site-wrapper">
 
-<%= yield %>
+    <div class="site-wrapper-inner">
 
+      <div class="cover-container">
+
+        <div class="masthead clearfix" style="width:100%">
+          <div class="inner" style="background: #20B2AA;">
+            <h3 class="masthead-brand" style="text-transform:uppercase">What you </h3>
+            <h3 class="masthead-brand" style="text-transform:uppercase; font-weight:bold;">watching?</h3>
+
+            <nav>
+              <ul class="nav masthead-nav">
+<!--                 <li class="active">
+                  <a href="#">Home</a>
+                </li> -->
+
+                <% if logged_in? %>
+                  <li><%= link_to 'Log Out', logout_path%></li>
+                <% end %>
+                <li>
+                  <% if logged_in? %>
+                    <%= image_tag(current_user.picture, size: "32") %>
+                  <% end %>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+          <%= yield %>
+     </div>
+    </div>
+  </div>
 </body>
 </html>
