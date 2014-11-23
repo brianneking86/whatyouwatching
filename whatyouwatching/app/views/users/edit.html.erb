@@ -1,13 +1,11 @@
 <%= link_to 'Log Out', logout_path %>
 
-<h1> Hi! <%=@user.name%> </h1>
+<h1> Hi <%=@user.name.split(" ").first%>! </h1>
 
 <% if @user.shows.count < 5 %>
-  <h3> It looks like you're book shelf is pretty empty! </h3>
-  <h3> Why don't you add some more shows? </h3>
+  <h3> It looks like you're book shelf is pretty empty! <br> Why don't you add some more shows? </h3>
   <% else %>
-    <h3> You've got a good looking library but</h3>
-    <h3> why don't you add some more shows? </h3>
+    <h3> You've got a good looking library but<br>why don't you add some more shows? </h3>
   <% end %>
 <ul>
 <% @user.shows.each do |show| %>

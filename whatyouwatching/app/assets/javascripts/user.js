@@ -1,13 +1,32 @@
 $(document).ready(function(){
   $('.sort_by_rating').hide();
+  $('.show_info').hide();
+  $('#my_show_list').hide();
+  $('#my_friends_list').hide();
 
-  $('#sort_friends').on("click", function(){
+  $('.wrapper').on("click", "#sort_friends" ,function(){
     $('.sort_by_rating').hide();
     $('.sort_by_friends').show();
   });
 
-  $('#sort_rating').on("click", function(){
+  $('.wrapper').on("click", '#sort_rating' ,function(){
     $('.sort_by_friends').hide();
     $('.sort_by_rating').show();
   });
+
+  $('.wrapper').on("click", '.show_title' ,function(e){
+    e.stopPropagation();
+    $(this).children('ul').toggle();
+  });
+
+  $('.wrapper').on("click", '#my_shows' ,function(e){
+    e.stopPropagation();
+    $('#my_show_list').toggle();
+  });
+
+  $('.wrapper').on("click", '#my_friends' ,function(e){
+    e.stopPropagation();
+    $('#my_friends_list').toggle();
+  });
+
 });
