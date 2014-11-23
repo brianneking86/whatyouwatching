@@ -172,10 +172,78 @@ height: 70px;
   }
 }
 
+.show_wrapper{
+  
+}
+
 .clickable{
   cursor: pointer;
 }
 
 form#new_user_show{
   display:inline;
+}
+
+input[type=submit] { 
+  background:rgba(255,255,255); 
+  border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 3px;
+  border-radius: 5px;
+  font-size: 10px;
+}
+
+#sort_friends{
+  display:inline;
+  text-decoration: underline;
+}
+
+#sort_rating{
+  display:inline;
+  text-decoration: underline;
+}
+
+#my_shows{
+  display:inline;
+}
+
+#show_link{
+  display:inline;
+}
+
+#friend_show_list{
+  padding: 5px;
+  width: 100%;
+  align: middle;
+}
+#friend_show_list li{
+  list-style-type: none;
+}
+
+.show_info{
+  padding: 5px;
+  align: middle;
+  width: 30%;
+  margin: 0 auto;
+}
+.show_info a{
+    text-decoration: underline;
+  }
+
+#pic_li{
+  display:inline;
+  width: 30%;
+  float:left;
+  padding-right: 5px;
+}
+
+#info_li{
+  display:inline;
+  width: 70%;
+  float:right;
+  padding-left: 5px;
+}
+
+ul{
+  list-style-type: none;
 }
