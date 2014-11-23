@@ -1,14 +1,9 @@
-<%= link_to 'Log Out', logout_path %><br>
-<% if @user != @current_user %>
-<%= link_to 'Return to my profile', user_path(@current_user) %>
-<% end %>
+<div class="wrapper" style="margin-top:90px">
+  <h1> Hi <%= @user.name.split(" ").first %>! </h1>
+  <%= image_tag(@user.picture, size: "32") %>
 
-<h1> Hi <%= @user.name.split(" ").first %>! </h1>
-<%= image_tag(@user.picture, size: "32") %>
-
-<br>
-<div class="wrapper">
-  <div id="my_shows">
+  <br>
+  <div id="my_shows" class="clickable">
     <h2> My Shows </h2>
     <ul id="my_show_list">
     <% @user.shows.each do |show| %>
@@ -18,7 +13,7 @@
   </div>
   <h2><%= link_to 'Add More Shows', edit_user_path(@user) %></h2>
 
-  <div id="my_friends">
+  <div id="my_friends" class="clickable">
     <h2> My Friends </h2>
     <ul id="my_friends_list">
     <% @user.friends_list.each do |f| %>
@@ -31,10 +26,10 @@
     <h4> You don't have any friends on here!<br>Tell your friends about WhatYouWatchin! </h4>
   <% else %>
     <h2> My Friend's Shows </h2>
-    <div id='sort_friends'><h5>Number of Friends Watching</h5></div><div id='sort_rating'><h5>Imdb Rating</h5></div>
+    <div id='sort_friends' class="clickable"><h5>Number of Friends Watching</h5></div><div id='sort_rating' class="clickable"><h5>Imdb Rating</h5></div>
     <div class="sort_by_rating">
       <% @user.shows_sort_by_rating.each do |show, rating| %>
-        <li class="show_title"><%= show.title %> - Imdb rating: <%=rating %>
+        <li class="show_title clickable"><%= show.title %> - Imdb rating: <%=rating %>
           <ul class="show_info" data-id="<%=show.id%>">
             <% if show.tagline %><li>Tagline: <%= show.tagline %></li><%end%>
             <li>Genres: <%= show.genre%></li>
@@ -50,7 +45,7 @@
     </div>
     <div class="sort_by_friends">
       <% @user.shows_sort_by_friends.each do |show, count| %>
-        <li class="show_title"><%= show.title %> - <%=count%> friends watch this
+        <li class="show_title clickable"><%= show.title %> - <%=count%> friends watch this
           <ul class="show_info">
             <% if show.tagline %><li>Tagline: <%= show.tagline %></li><%end%>
             <li>Genres: <%= show.genre%></li>

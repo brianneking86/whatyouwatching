@@ -171,3 +171,11 @@ height: 70px;
     width: 100%;
   }
 }
+
+.clickable{
+  cursor: pointer;
+}
+
+form#new_user_show{
+  display:inline;
+}

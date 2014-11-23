@@ -23,7 +23,9 @@
 <!--                 <li class="active">
                   <a href="#">Home</a>
                 </li> -->
-
+                <% if @user != @current_user %>
+                  <%= link_to 'Return to my profile', user_path(@current_user) %>
+                <% end %>
                 <% if logged_in? %>
                   <li><%= link_to 'Log Out', logout_path%></li>
                 <% end %>

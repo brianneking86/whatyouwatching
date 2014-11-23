@@ -7,16 +7,18 @@ class User < ActiveRecord::Base
   def self.create_from_omniauth(auth_hash)
     user = self.create(u_id: auth_hash[:uid],
                 name: auth_hash[:info][:name],
-                picture: auth_hash[:info][:image])    
-    user.add_friends
+                picture: auth_hash[:info][:image]) 
+    user.add_friends(ENV['ACCESS_TOKEN'])
     user.add_shows
     user
   end
 
-  def add_friends
-    @graph = Koala::Facebook::API.new(ENV['ACCESS_TOKEN'])
+  def add_friends(token)
+    Koala.config.api_version = "v2.0"
+    @graph = Koala::Facebook::API.new(token, ENV['FACEBOOK_SECRET'])
+    binding.pry
     profile = @graph.get_object("me")
-    friends = @graph.get_connections(profile["id"], "friends")
+    friends = @graph.get_connections("me", "friends")
     friends.each do |friend|
       self.friends.create(:u_id => friend["id"])
     end

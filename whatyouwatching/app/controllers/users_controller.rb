@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @current_user = User.find(session[:user_id])
     @user = User.find(session[:user_id])
   end
 end
