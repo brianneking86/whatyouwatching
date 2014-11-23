@@ -1,8 +1,12 @@
 <h1>Welcome to WhatYouWatching</h1>
 
 <% if logged_in? %>
-  <%= link_to current_user.name, user_path(current_user) %>
+<div class="log_out">
+  <%= link_to current_user.name, user_path(current_user) %><br>
   <%= link_to 'Log Out', logout_path %>
+</div>
 <% else %>
+<div class="log_in">
   <%= link_to 'Log In with Facebook', login_path %>
+</div>
 <% end %>

@@ -8,7 +8,6 @@ class Show < ActiveRecord::Base
   end
 
   def self.find_show(name, user)
-    #if nil then call create_show
     i = Imdb::Search.new(name)
     m = i.movies.first
     show = Imdb::Serie.new(m.id)
@@ -20,7 +19,7 @@ class Show < ActiveRecord::Base
     else
       if !user.shows.include?(s)
         user.user_shows.create(show_id: s.id)
-        #add notice saying ahow already exists
+        #add notice saying show already exists
       end
     end
   end

@@ -15,9 +15,6 @@ class User < ActiveRecord::Base
   end
 
   def add_friends
-    # make API call to facebook to get friend list
-    # iterate over friend array returned by facebook
-    # create rows in friends table with friend's facebook u_id
     @graph = Koala::Facebook::API.new(ENV['ACCESS_TOKEN'])
     profile = @graph.get_object("me")
     friends = @graph.get_connections(profile["id"], "friends")
