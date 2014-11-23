@@ -19,15 +19,23 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
-/*ul.showing-posters
+ul.list-inline
  {
- margin: 0;
- padding: 0;
- list-style-type: none;
+  white-space: nowrap;
+  overflow-x: auto;
  }
 
-ul.showing-poster li
-{
-display: inline;
-}*/
+ .container-full {
+   margin: 0 auto;
+   width: 900px;
+ }
+
+ul.showing-poster li[class*="span"] {
+    display: inline-block;
+    float: none;
+}
+
+ul.showing-poster li[class*="span"]:first-child {
+    margin-left: 0;
+}
 

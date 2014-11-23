@@ -55,9 +55,10 @@ body {
 
 /* Padding for spacing */
 .inner {
-  padding: 30px;
+padding: 10px 50px 0px 50px;
+height: 70px;
+/* margin-bottom: 20px; */
 }
-
 
 /*
  * Header
@@ -118,10 +119,15 @@ body {
 }
 
 
+
 /*
- * Footer
+ * Footer http://giphy.com/search/no-signal-tv
  */
 
+ .mastfoot {
+ position: absolute !important;
+ bottom: -30px !important;
+ }
 .mastfoot {
   color: #999; /* IE8 proofing */
   color: rgba(255,255,255,.5);
@@ -162,6 +168,6 @@ body {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 700px;
+    width: 100%;
   }
 }

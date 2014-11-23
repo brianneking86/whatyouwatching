@@ -1,5 +1,7 @@
 
 
+
+<br><br>
 <h1> Hi! <%=@user.name%> </h1>
 
 <div class="row">
@@ -8,20 +10,23 @@
   <h3> It looks like you're book shelf is pretty empty! </h3>
   <h3> Why don't you add some more shows? </h3>
   <% else %>
-    <h3> You've got a good looking library but</h3>
-    <h3> why don't you add some more shows? </h3>
+    <h3> You've got a good looking library but why don't you add some more shows? </h3>
+
   <% end %>
 </div>
+</div> <!-- end of cover container -->
 
-<div class="relative-container">
-<div class="row-absolute">
+<div class="container-full" style="margin-top:28px">
+  <div class="row">
 <ul class="list-inline">
 <% @user.shows.each do |show| %>
-  <li> <%=show.title %><br>
+  <li class="span2">
+    <span class="show-titles"><%=show.title %></span>
+    <br>
     <% if show.poster.nil? %>
     <%= image_tag 'http://placehold.it/100x130', width: '100' %>
     <% else %>
-    <%= image_tag show.poster, width: '100' %>
+    <%= image_tag show.poster, width: '200' %>
     <% end %>
   </li>
 <% end %>
@@ -29,7 +34,7 @@
 </div>
 </div>
 
-<div class="row">
+<div class="row" style="width:450px; margin: 0 auto">
   <%= form_for(Show.new) do |f| %>
     <%= f.hidden_field :user_id, :value => @user.id %>
     <div class="input-group">
@@ -40,6 +45,7 @@
       <% end %>
     </div>
   </div><!-- /.col-lg-6 -->
+<br>
+  <%= link_to 'All Done!', user_path(@user), class: "btn btn-primary btn" %>
 </div><!-- /.row -->
 
-<%= link_to 'All Done!', user_path(@user) %>
