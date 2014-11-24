@@ -2,41 +2,38 @@
 <h1> Hi <%=@user.name.split(" ").first%>! </h1>
 
 <div class="row">
-
 <% if @user.shows.count < 5 %>
   <h3> It looks like you're book shelf is pretty empty! </h3>
   <h3> Why don't you add some more shows? </h3>
   <% else %>
     <h3> You've got a good looking library but why don't you add some more shows? </h3>
-
-
   <% end %>
 </div>
 </div> <!-- end of cover container -->
 
 <div class="container-full" style="margin-top:28px">
   <div class="row">
-<ul class="list-inline">
-<% @user.shows.each do |show| %>
-  <li class="span2">
-    <div class="row cool-shows">
-      <div class="col-xs-6 col-md-12 show-edit" style="background-image: url(<% if show.poster.nil? %><%= 'OLD_SCHOOL_TV.jpg' %><% else %><%= show.poster %><% end %>)">
-        <div class="top-edit">
-          <h2><%= show.title %></h2>
+    <ul class="list-inline">
+    <% @user.shows.each do |show| %>
+      <li class="span2">
+        <div class="row cool-shows">
+          <div class="col-xs-6 col-md-12 show-edit" style="background-image: url(<% if show.poster.nil? %><%= 'OLD_SCHOOL_TV.jpg' %><% else %><%= show.poster %><% end %>)">
+            <div class="top-edit">
+              <h2><%= show.title %></h2>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </li>
-<% end %>
-</ul>
-</div>
+      </li>
+    <% end %>
+    </ul>
+  </div>
 </div>
 
 <div class="row" style="width:450px; margin: 0 auto">
 
   <%= form_for(Show.new) do |f| %>
     <%= f.hidden_field :user_id, :value => @user.id %>
-    <div class="input-group">
+    <div class="input-group input-group-lg">
         <%= f.text_field :title, class: "form-control", :placeholder => "Show Title" %>
         <span class="input-group-btn">
           <%= f.submit "Add!", class: "btn btn-default" %>
@@ -44,7 +41,7 @@
       <% end %>
     </div>
   </div><!-- /.col-lg-6 -->
-<br>
+  <br>
   <%= link_to 'All Done!', user_path(@user), class: "btn btn-primary btn-lg" %>
 </div><!-- /.row -->
 

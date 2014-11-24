@@ -61,18 +61,14 @@
                <div class="col-xs-12 col-md-7 show-right">
                  <div class="top-left" style="height:63%">
                    <h2><%= show.title %></h2>
-
                    <p style="margin-top:17px"><%= show.plot%></p>
                  </div>
-
                  <button type="button" class="btn btn-primary btn-lg pull-right btn-update" style="width:100%">
                    <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
                    <%= link_to "IMDB page", show.url, :target => "_blank"%>
                  </button>
-
                  <%=form_for(UserShow.new) do |f| %>
                   <%=f.hidden_field :show_id, :value =>show.id %>
-
                    <%=f.submit "Add to my shows", { class: "btn btn-primary btn-lg", style: 'width:100%; margin-top: 8px' } %>
                    <% end %>
                </div>
@@ -85,5 +81,25 @@
   </div>
 </div>
 
+<h2><%= link_to "My Shows", edit_user_path %> </h2>
+<div id="my_friends" class="clickable">
+  <h2> My Friend's Shows </h2>
+  <div class="container-full" style="margin-top:28px">
+    <div class="row">
+        <ul class="list-inline" id="my_friends_list">
+        <% @user.friends_list.each do |f| %>
+          <li class="span4">
+            <span class="friend-titles"><%= link_to f.name, user_path(f) %></span>
+            <% if f.picture.nil? %>
+              <%= image_tag 'http://placehold.it/100x130', width: '100' %>
+            <% else %>
+              <%= image_tag f.picture, width: '100' %>
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
+    </div>
+  </div>
+</div>
 
 </div>
