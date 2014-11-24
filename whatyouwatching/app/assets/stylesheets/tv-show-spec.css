@@ -9,6 +9,11 @@
   background-size: cover;
   border-radius: 10px 0px 0px 10px;
 }
+.show-edit {
+  height: 359px;
+  background-image: url(http://ia.media-imdb.com/images/M/MV5BODU0NzA1MTEwN15BMl5BanBnXkFtZTcwOTI1NjI5MQ@@.jpg);
+  background-size: cover;
+}
 
 .show-right {
   height: 359px;
@@ -27,6 +32,22 @@
   padding: 0px 10px 4px 12px;
   width: 100%;
   }
+
+  .top-edit {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #CEF8FF;
+    padding: 0px 10px 12px 12px;
+    width: 100%;
+    }
+
+    .top-edit h2 {
+      text-shadow: 0 1px 3px rgba(0,0,0,.5);
+      font-size:20px;
+    }
 
   .top-left {
     text-align: left;

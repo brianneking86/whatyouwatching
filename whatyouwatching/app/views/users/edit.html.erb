@@ -19,13 +19,13 @@
 <ul class="list-inline">
 <% @user.shows.each do |show| %>
   <li class="span2">
-    <span class="show-titles"><%=show.title %></span>
-    <br>
-    <% if show.poster.nil? %>
-    <%= image_tag 'http://placehold.it/100x130', width: '100' %>
-    <% else %>
-    <%= image_tag show.poster, width: '200' %>
-    <% end %>
+    <div class="row cool-shows">
+      <div class="col-xs-6 col-md-12 show-edit" style="background-image: url(<% if show.poster.nil? %><%= 'OLD_SCHOOL_TV.jpg' %><% else %><%= show.poster %><% end %>)">
+        <div class="top-edit">
+          <h2><%= show.title %></h2>
+        </div>
+      </div>
+    </div>
   </li>
 <% end %>
 </ul>
@@ -33,7 +33,7 @@
 </div>
 
 <div class="row" style="width:450px; margin: 0 auto">
-  
+
   <%= form_for(Show.new) do |f| %>
     <%= f.hidden_field :user_id, :value => @user.id %>
     <div class="input-group">
@@ -45,6 +45,6 @@
     </div>
   </div><!-- /.col-lg-6 -->
 <br>
-  <%= link_to 'All Done!', user_path(@user), class: "btn btn-primary btn" %>
+  <%= link_to 'All Done!', user_path(@user), class: "btn btn-primary btn-lg" %>
 </div><!-- /.row -->
 
