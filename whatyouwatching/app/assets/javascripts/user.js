@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $('.sort_by_rating').hide();
   $('.show_info').hide();
-  $('#my_show_list').hide();
+  $('#my_show_list').show();
   $('#my_friends_list').hide();
 
   $('.show_wrapper').on("click", "#sort_friends" ,function(){
