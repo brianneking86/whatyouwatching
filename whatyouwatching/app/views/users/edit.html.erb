@@ -3,13 +3,11 @@
 
 <div class="row">
 
-<% if @user.shows.count < 5 %>
-  <h3> It looks like you're book shelf is pretty empty! </h3>
-  <h3> Why don't you add some more shows? </h3>
+  <% if @user.shows.count < 5 %>
+    <h3> It looks like you're book shelf is pretty empty! </h3>
+    <h3> Why don't you add some more shows? </h3>
   <% else %>
     <h3> You've got a good looking library but why don't you add some more shows? </h3>
-
-
   <% end %>
 </div>
 </div> <!-- end of cover container -->
@@ -22,7 +20,7 @@
     <span class="show-titles"><%=show.title %></span>
     <br>
     <% if show.poster.nil? %>
-    <%= image_tag 'http://placehold.it/100x130', width: '100' %>
+    <%= image_tag 'OLD_SCHOOL_TV.jpg', width: '200' %>
     <% else %>
     <%= image_tag show.poster, width: '200' %>
     <% end %>
