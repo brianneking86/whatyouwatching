@@ -5,13 +5,11 @@
 
 .show-left {
   height: 359px;
-  background-image: url(http://ia.media-imdb.com/images/M/MV5BODU0NzA1MTEwN15BMl5BanBnXkFtZTcwOTI1NjI5MQ@@.jpg);
   background-size: cover;
   border-radius: 10px 0px 0px 10px;
 }
 .show-edit {
   height: 359px;
-  background-image: url(http://ia.media-imdb.com/images/M/MV5BODU0NzA1MTEwN15BMl5BanBnXkFtZTcwOTI1NjI5MQ@@.jpg);
   background-size: cover;
 }
 

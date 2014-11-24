@@ -17,7 +17,7 @@
     <% @user.shows.each do |show| %>
       <li class="span2">
         <div class="row cool-shows">
-          <div class="col-xs-6 col-md-12 show-edit" style="background-image: url(<% if show.poster.nil? %><%= 'OLD_SCHOOL_TV.jpg' %><% else %><%= show.poster %><% end %>)">
+          <div class="col-xs-6 col-md-12 show-edit" style="background-image: url(<% if show.poster.nil? %><%= 'http://placehold.it/133/264' %><% else %><%= show.poster %><% end %>)">
             <div class="top-edit">
               <h2><%= show.title %></h2>
             </div>
