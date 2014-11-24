@@ -1,16 +1,19 @@
-<div class="show_wrapper" style="margin-top:60px">
+<div class="show_wrapper" style="margin-top:60px;">
   <br>
   <% if @user == @current_user%>
-    <h1>Hi <%= @user.name.split(" ").first %>! Here are your show recomendations.</h1>
+    <h1 style="margin-left:200px; margin-right:200px">Hi <%= @user.name.split(" ").first %>! Here it is! Fresh series recomendations. Sweeet!</h1>
+    <h5>Sort By: <div id='sort_friends' class="clickable">Based on your friends likes </div> | <div id='sort_rating' class="clickable">Based on Imdb Ratings</div></h5>
   <% else %>
     <h1><%= image_tag @user.picture, width: '75' %> <%= @user.name.split(" ").first %>'s Page</h1>
   <% end %>
+
+
  <div class="clickable">
   <h2>
-
-
     <div id="my_shows"> My Shows </div>
   </h2>
+<div id="friend_show_list">
+  <div class="sort_by_friends">
     <div class="container-full" style="margin-top:28px">
       <div class="row" style="margin-left:10px; margin-right: 5px">
         <ul class="list-inline" id="my_show_list">
@@ -36,15 +39,8 @@
                  <%=form_for(UserShow.new) do |f| %>
                   <%=f.hidden_field :show_id, :value =>show.id %>
 
-                   <%=f.submit "Add to my shows", class: "btn btn-primary btn-lg pull-right" %>
-                  <% end %>
-
-
- <!--                 <button type="button" class="btn btn-primary btn-lg pull-right" style="width:100%">
-                   <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Add to My Shows
-                 </button> -->
-
-
+                   <%=f.submit "Add to my shows", { class: "btn btn-primary btn-lg", style: 'width:100%' } %>
+                   <% end %>
                </div>
              </div>
             </li>
@@ -52,86 +48,45 @@
         </ul>
       </div>
     </div>
-
-
-  <div id="my_friends" class="clickable">
-    <h2> My Friends </h2>
+  </div>
+  <div class="sort_by_rating">
     <div class="container-full" style="margin-top:28px">
-      <div class="row-custom">
-          <ul class="list-inline" id="my_friends_list">
-          <% @user.friends_list.each do |f| %>
-            <li class="span4">
-              <span class="friend-titles"><%= link_to f.name, user_path(f) %></span>
-              <% if f.picture.nil? %>
-                <%= image_tag 'http://placehold.it/100x130', width: '100' %>
-              <% else %>
-                <%= image_tag f.picture, width: '100' %>
-              <% end %>
+      <div class="row" style="margin-left:10px; margin-right: 5px">
+        <ul class="list-inline" id="my_show_list">
+          <% @user.shows_sort_by_rating.each do |show, rating| %>
+            <li class="span-tv">
+             <div class="row cool-shows">
+               <div class="col-xs-6 col-md-5 show-left" style="background-image: url(<% if show.poster.nil? %><%= 'OLD_SCHOOL_TV.jpg' %><% else %><%= show.poster %><% end %>)">
+                 <div class="top">
+                   <h2>Imdb rating: <%=rating%> </h2>
+                 </div>
+               </div>
+               <div class="col-xs-12 col-md-7 show-right">
+                 <div class="top-left" style="height:63%">
+                   <h2><%= show.title %></h2>
+
+                   <p style="margin-top:17px"><%= show.plot%></p>
+                 </div>
+
+                 <button type="button" class="btn btn-primary btn-lg pull-right btn-update" style="width:100%">
+                   <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                   <%= link_to "IMDB page", show.url, :target => "_blank"%>
+                 </button>
+
+                 <%=form_for(UserShow.new) do |f| %>
+                  <%=f.hidden_field :show_id, :value =>show.id %>
+
+                   <%=f.submit "Add to my shows", { class: "btn btn-primary btn-lg", style: 'width:100%; margin-top: 8px' } %>
+                   <% end %>
+               </div>
+             </div>
             </li>
           <% end %>
-          </ul>
+        </ul>
       </div>
     </div>
   </div>
-  <% if @user.friends.count == 0 %>
-    <h4> You don't have any friends on here!<br>Tell your friends about WhatYouWatchin! </h4>
-  <% else %>
-    <h2> My Friend's Shows </h2>
-    <h5>Sort By: <div id='sort_friends' class="clickable">Number of Friends Watching </div> | <div id='sort_rating' class="clickable"> Imdb Rating</div></h5>
-    <br>
-    <div id="friend_show_list">
-      <div class="sort_by_friends">
-        <% @user.shows_sort_by_friends.each do |show, count| %>
-          <li class="show_title clickable"><h4><%= show.title %> - <%=count%> friends watch this
-            <%=form_for(UserShow.new) do |f| %>
-              <%=f.hidden_field :show_id, :value =>show.id %>
-              <%=f.submit "Add to my shows"%>
-            <% end %></h4>
-            <div class="show_info">
-              <div id="pic_li">
-                <% if show.poster.nil? %>
-                  <%= image_tag 'OLD_SCHOOL_TV.jpg', height: '130' %>
-                <% else %>
-                  <%= image_tag show.poster, height: '130' %>
-                <% end %>
-              </div>
-              <div id="info_li">
-                <% if show.tagline %><h5> - Tagline: <%= show.tagline %></h5><%end%>
-                <h5> - Genres: <%= show.genre%></h5>
-                <h5> - Plot: <%= show.plot%></h5>
-                <h5> - <%= link_to "#{show.title}'s IMDB page", show.url, :target => "_blank"%></h5>
-              </div>
-              <br style="clear:both;"/>
-            </div>
-          </li><br>
-        <% end %>
-      </div>
-      <div class="sort_by_rating">
-        <% @user.shows_sort_by_rating.each do |show, rating| %>
-          <li class="show_title clickable"><h4><%= show.title %> - Imdb rating: <%=rating%>
-            <%=form_for(UserShow.new) do |f| %>
-              <%=f.hidden_field :show_id, :value =>show.id %>
-              <%=f.submit "Add to my shows"%>
-            <% end %></h4>
-            <div class="show_info">
-              <div id="pic_li">
-                <% if show.poster.nil? %>
-                  <%= image_tag 'OLD_SCHOOL_TV.jpg', height: '130' %>
-                <% else %>
-                  <%= image_tag show.poster, height: '130' %>
-                <% end %>
-              </div>
-              <div id="info_li">
-                <% if show.tagline %><h5> - Tagline: <%= show.tagline %></h5><%end%>
-                <h5> - Genres: <%= show.genre%></h5>
-                <h5> - Plot: <%= show.plot%></h5>
-                <h5> - <%= link_to "#{show.title}'s IMDB page", show.url, :target => "_blank"%></h5>
-              </div>
-              <br style="clear:both;"/>
-            </div>
-          </li><br>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+</div>
+
+
 </div>
