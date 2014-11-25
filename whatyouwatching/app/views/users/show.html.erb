@@ -1,5 +1,6 @@
 <div class="show_wrapper" style="margin-top:60px;">
   <br>
+  <h3><%if notice %><%= notice %><br><%end%></h3>
   <% if @user == @current_user%>
     <h1 style="margin-left:200px; margin-right:200px">Hi <%= @user.name.split(" ").first %>! Here it is! Fresh series recomendations. Sweeet!</h1>
     <h5>Sort By: <div id='sort_friends' class="clickable">Based on your friends likes </div> | <div id='sort_rating' class="clickable">Based on Imdb Ratings</div></h5>
@@ -32,13 +33,10 @@
                  <% end %>
                    <p style="margin-top:10px"><%= show.plot%></p>
                  </div>
-                <% if @user == @current_user%>
                   <%=form_for(UserShow.new) do |f| %>
                     <%=f.hidden_field :show_id, :value =>show.id %>
-
                     <%=f.submit "Add to my shows", { class: "btn btn-primary btn-lg", style: 'width:100%' } %>
                   <% end %>
-                <% end %>
                </div>
              </div>
             </li>
@@ -68,10 +66,10 @@
                    <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
                    <%= link_to "IMDB page", show.url, :target => "_blank"%>
                  </button>
-                 <%=form_for(UserShow.new) do |f| %>
-                  <%=f.hidden_field :show_id, :value =>show.id %>
-                   <%=f.submit "Add to my shows", { class: "btn btn-primary btn-lg", style: 'width:100%; margin-top: 8px' } %>
-                   <% end %>
+                  <%=form_for(UserShow.new) do |f| %>
+                    <%=f.hidden_field :show_id, :value =>show.id %>
+                    <%=f.submit "Add to my shows", { class: "btn btn-primary btn-lg", style: 'width:100%; margin-top: 8px' } %>
+                  <% end %>
                </div>
              </div>
             </li>

@@ -1,4 +1,4 @@
-<br><br>
+<br><br><br>
 <% if @user == @current_user %>
 <h1> Hi <%=@user.name.split(" ").first%>! </h1>
 <% else %>
@@ -22,7 +22,7 @@
 <div class="container-full" style="margin-top:28px">
   <div class="row">
     <ul class="list-inline">
-    <% @user.shows.each do |show| %>
+    <% @user.shows.reverse.each do |show| %>
       <li class="span2">
         <div class="row cool-shows">
           <div class="col-xs-6 col-md-12 show-edit" style="background-image: url(<% if show.poster.nil? %><%= image_url('gif-no-signal.gif') %><% else %><%= show.poster %><% end %>)">
@@ -30,6 +30,12 @@
               <h2><%= show.title %></h2>
             </div>
           </div>
+            <% if @user != @current_user %>
+              <%=form_for(UserShow.new) do |f| %>
+                <%=f.hidden_field :show_id, :value =>show.id %>
+                <%=f.submit "Add to my shows", { class: "btn btn-primary btn-lg", style: 'width:100%' } %>
+              <% end %>
+            <% end %>
         </div>
       </li>
     <% end %>
