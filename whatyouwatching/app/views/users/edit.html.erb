@@ -1,14 +1,21 @@
 <br><br>
+<% if @user == @current_user %>
 <h1> Hi <%=@user.name.split(" ").first%>! </h1>
+<% else %>
+<h1> <%=@user.name.split(" ").first%>'s Library </h1>
+<% end %>
 
 <div class="row">
-
-  <% if @user.shows.count < 5 %>
-    <h3> It looks like you're book shelf is pretty empty! </h3>
-    <h3> Why don't you add some more shows? </h3>
-  <% else %>
-    <h3> You've got a good looking library but why don't you add some more shows? </h3>
-  <% end %>
+<% if @user == @current_user %>
+    <% if @user.shows.count < 5 %>
+      <h3> It looks like you're book shelf is pretty empty! </h3>
+      <h3> Why don't you add some more shows? </h3>
+    <% else %>
+      <h3> You've got a good looking library but why don't you add some more shows? </h3>
+    <% end %>
+<% else %>
+    <h3> Check out what <%=@user.name.split(" ").first%> has been watching!</h3>
+<% end %>
 </div>
 </div> <!-- end of cover container -->
 
@@ -29,7 +36,7 @@
     </ul>
   </div>
 </div>
-
+<% if @user == @current_user %>
 <div class="row" style="width:450px; margin: 0 auto">
 
   <%= form_for(Show.new) do |f| %>
@@ -42,6 +49,7 @@
       <% end %>
     </div>
   </div><!-- /.col-lg-6 -->
+<% end %>
   <br>
   <%= link_to 'All Done!', user_path(@user), class: "btn btn-primary btn-lg" %>
 </div><!-- /.row -->

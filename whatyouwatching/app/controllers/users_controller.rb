@@ -7,6 +7,6 @@ class UsersController < ApplicationController
 
   def edit
     @current_user = User.find(session[:user_id])
-    @user = User.find(session[:user_id])
+    @user = User.find(params[:id])
   end
 end

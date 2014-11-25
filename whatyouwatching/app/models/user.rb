@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
   def add_friends(token)
     Koala.config.api_version = "v2.0"
     @graph = Koala::Facebook::API.new(token, ENV['FACEBOOK_SECRET'])
-    binding.pry
     profile = @graph.get_object("me")
     friends = @graph.get_connections("me", "friends")
     friends.each do |friend|

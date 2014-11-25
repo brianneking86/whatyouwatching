@@ -19,7 +19,6 @@ class Show < ActiveRecord::Base
     else
       if !user.shows.include?(s)
         user.user_shows.create(show_id: s.id)
-        #add notice saying show already exists
       end
     end
   end
