@@ -6,7 +6,7 @@
     <h5>Sort By: <div id='sort_friends' class="clickable">Based on your friends likes </div> | <div id='sort_rating' class="clickable">Based on Imdb Ratings</div></h5>
   <% else %>
     <h1><%= image_tag @user.picture, width: '75' %> <%= @user.name.split(" ").first %>'s Page</h1>
-    <h5>Sort By: <div id='sort_friends' class="clickable">Based on your friends likes </div> | <div id='sort_rating' class="clickable">Based on Imdb Ratings</div></h5>
+    <h5>Sort By: <div id='sort_friends' class="clickable">Based on number of friends who watch </div> | <div id='sort_rating' class="clickable">Based on Imdb Ratings</div></h5>
   <% end %>
 
 
